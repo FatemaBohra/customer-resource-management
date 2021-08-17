@@ -1,17 +1,20 @@
 package zenab.project.customerRelationshipManager.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.UUID;
 
-@Entity
+@Entity // This tells Hibernate to make a table out of this class
+@Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String firstName;
     private String lastName;
     private String email;
+
+    public Customer() {
+    }
 
     public Customer(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -19,11 +22,11 @@ public class Customer {
         this.email = email;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -22,7 +22,9 @@ h1, h2, h3, h4, h5, h6 {
     </header>
 </div>
 
-<form action="/action_page.php" class="w3-container w3-half w3-card-4 w3-light-grey w3-text-teal w3-margin">
+<form action="/add"
+    method="post"
+    class="w3-container w3-half w3-card-4 w3-light-grey w3-text-teal w3-margin">
 
 <div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
@@ -45,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
     </div>
 </div>
 
-<button class="w3-btn w3-block w3-section w3-teal w3-ripple w3-padding">Save Customer</button>
+<button type="submit" class="w3-btn w3-block w3-section w3-teal w3-ripple w3-padding">Save Customer</button>
 
 </form>
 
