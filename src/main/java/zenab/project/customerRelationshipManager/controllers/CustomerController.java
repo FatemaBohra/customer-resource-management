@@ -5,15 +5,14 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import zenab.project.customerRelationshipManager.entities.Customer;
 import zenab.project.customerRelationshipManager.repositories.CustomerRepository;
 
 @Controller
 public class CustomerController {
     @RequestMapping("/addCustomer.html")
-    public ModelAndView firstPage() {
-        return new ModelAndView("addCustomer");
+    public String firstPage() {
+        return "addCustomer";
     }
 
     @Autowired // This means to get the bean called userRepository
@@ -35,12 +34,12 @@ public class CustomerController {
         customer.setLastName(lastname);
         customer.setEmail(email);
         customerRepository.save(customer);
-        return "Saved! " + customer.getId();
+        return "Saved! " + customer.getFirstName();
     }
 
     @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable<Customer> getAllUsers() {
+    Iterable<Customer> getAllCustomers() {
         // This returns a JSON or XML with the users
         return customerRepository.findAll();
     }
