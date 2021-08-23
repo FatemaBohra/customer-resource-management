@@ -1,16 +1,21 @@
 package zenab.project.customerRelationshipManager.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import zenab.project.customerRelationshipManager.entities.Customer;
 import zenab.project.customerRelationshipManager.repositories.CustomerRepository;
 
+import java.util.UUID;
+
 @Controller
 public class CustomerController {
-    @RequestMapping("/addCustomer.html")
+    @GetMapping("/addCustomer.html")
     public String firstPage() {
         return "addCustomer";
     }
@@ -20,13 +25,10 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE) // Map ONLY POST Requests
-    public @ResponseBody
-    String addNewUser(@RequestBody MultiValueMap<String, String> formData) {
-        // @ResponseBody means the returned String is the response, not a view firstName
-        // @RequestParam means it is a parameter from the GET or POST request
+    public String addNewCustomer(@RequestBody MultiValueMap<String, String> formData) {
 
-        var firstName = formData.getFirst("first");
-        var lastname = formData.getFirst("last");
+        var firstName = formData.getFirst("firstName");
+        var lastname = formData.getFirst("lastName");
         var email = formData.getFirst("email");
 
         Customer customer = new Customer();
@@ -34,9 +36,56 @@ public class CustomerController {
         customer.setLastName(lastname);
         customer.setEmail(email);
         customerRepository.save(customer);
-        return "Saved! " + customer.getFirstName();
+        return "redirect:/home.html";
     }
 
+    @GetMapping(path = "/update/{customerId}")
+    public String updateCustomer(@PathVariable UUID customerId, Model model) {
+
+        var customerOptional = customerRepository.findById(customerId);
+        if (customerOptional.isEmpty()) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        }
+        var customer = customerOptional.get();
+        model.addAttribute("customer", customer);
+
+        return "update";
+    }
+
+    @PostMapping(path = "/update/{customerId}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE) // Map ONLY POST Requests
+    public String updateCustomer(@RequestBody MultiValueMap<String, String> formData,
+                          @PathVariable UUID customerId) {
+
+        var firstName = formData.getFirst("firstName");
+        var lastname = formData.getFirst("lastName");
+        var email = formData.getFirst("email");
+
+
+        var customerOptional = customerRepository.findById(customerId);
+        if (customerOptional.isEmpty()) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        }
+        var customer = customerOptional.get();
+        customer.setFirstName(firstName);
+        customer.setLastName(lastname);
+        customer.setEmail(email);
+        customerRepository.save(customer);
+
+        return "redirect:/home.html";
+    }
+
+    @GetMapping(path="/delete/{customerId}")
+    public String deleteCustomer(@PathVariable UUID customerId) {
+
+        customerRepository.deleteById(customerId);
+        return "redirect:/home.html";
+    }
+
+    // TODO : use jackson library to render json object here
     @GetMapping(path = "/all")
     public @ResponseBody
     Iterable<Customer> getAllCustomers() {

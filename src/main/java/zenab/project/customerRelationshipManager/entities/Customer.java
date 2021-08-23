@@ -1,5 +1,7 @@
 package zenab.project.customerRelationshipManager.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -9,8 +11,14 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
+
+    @Column(unique=true)
     private String email;
 
     public Customer() {
