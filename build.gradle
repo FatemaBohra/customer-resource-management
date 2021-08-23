@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'zenab.project'
+group = 'fatema.project'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '15'
 
