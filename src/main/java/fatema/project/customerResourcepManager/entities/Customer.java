@@ -1,4 +1,4 @@
-package fatema.project.customerRelationshipManager.entities;
+package fatema.project.customerResourcepManager.entities;
 
 import com.sun.istack.NotNull;
 

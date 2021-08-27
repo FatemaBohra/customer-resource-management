@@ -1,4 +1,4 @@
-package fatema.project.customerRelationshipManager.controllers;
+package fatema.project.customerResourcepManager.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import fatema.project.customerRelationshipManager.entities.Customer;
-import fatema.project.customerRelationshipManager.service.CustomerAuthenticationService;
-import fatema.project.customerRelationshipManager.service.CustomerService;
+import fatema.project.customerResourcepManager.entities.Customer;
+import fatema.project.customerResourcepManager.service.CustomerAuthenticationService;
+import fatema.project.customerResourcepManager.service.CustomerService;
 
 import java.util.UUID;
 

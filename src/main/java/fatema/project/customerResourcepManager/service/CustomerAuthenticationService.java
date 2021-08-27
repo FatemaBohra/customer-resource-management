@@ -1,4 +1,4 @@
-package fatema.project.customerRelationshipManager.service;
+package fatema.project.customerResourcepManager.service;
 
 import org.springframework.stereotype.Service;
 

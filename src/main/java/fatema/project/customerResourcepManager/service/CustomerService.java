@@ -1,11 +1,11 @@
-package fatema.project.customerRelationshipManager.service;
+package fatema.project.customerResourcepManager.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import fatema.project.customerRelationshipManager.entities.Customer;
-import fatema.project.customerRelationshipManager.repositories.CustomerRepository;
+import fatema.project.customerResourcepManager.entities.Customer;
+import fatema.project.customerResourcepManager.repositories.CustomerRepository;
 
 import java.util.UUID;
 

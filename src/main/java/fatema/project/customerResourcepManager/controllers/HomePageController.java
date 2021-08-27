@@ -1,10 +1,10 @@
-package fatema.project.customerRelationshipManager.controllers;
+package fatema.project.customerResourcepManager.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import fatema.project.customerRelationshipManager.repositories.CustomerRepository;
+import fatema.project.customerResourcepManager.repositories.CustomerRepository;
 
 @Controller
 public class HomePageController {

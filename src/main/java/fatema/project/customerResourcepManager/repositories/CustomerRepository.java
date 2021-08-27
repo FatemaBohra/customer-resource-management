@@ -1,7 +1,7 @@
-package fatema.project.customerRelationshipManager.repositories;
+package fatema.project.customerResourcepManager.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import fatema.project.customerRelationshipManager.entities.Customer;
+import fatema.project.customerResourcepManager.entities.Customer;
 
 import java.util.UUID;
 
